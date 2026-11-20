@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>VICE COVER STUDIO</h1>
+  <p>Your photo, your caption — a multi-panel cover in the Vice City sunset style.</p>
+</header>
+<main class="app">
+  <div class="controls">
+    <section aria-label="Photos">
+      <h2>1 · Photos</h2>
+      <div class="photos" id="photos"></div>
+      <div class="row">
+        <button id="add-photo" type="button">Add photos…</button>
+        <button id="sample-boulevard" type="button">Sample: Boulevard</button>
+        <button id="sample-pier" type="button">Sample: Pier</button>
+      </div>
+      <div class="dropzone" id="dropzone">
+        Drop photos here, or use Add photos — they stay on your machine, never uploaded.
+        <input id="photo" type="file" accept="image/*" multiple>
+      </div>
+      <p class="hint">Click a photo to select it, then click a panel on the cover to place it there. “Fill all panels” puts the selected photo in every panel, each cropped on its own.</p>
+      <div class="row">
+        <button id="fill-all" type="button">Fill all panels</button>
+        <button id="remove-photo" type="button" class="danger">Remove photo</button>
+      </div>
+    </section>
+
+    <section aria-label="Layout and grade">
+      <h2>2 · Layout &amp; grade</h2>
+      <div class="row" id="layouts" role="group" aria-label="Panel layout"></div>
+      <div class="row" id="grades" role="group" aria-label="Colour grade"></div>
+      <p class="hint">Drag a panel on the cover to move its photo; scroll over it, or use the zoom slider, to zoom in.</p>
+      <label for="zoom">Zoom selected panel</label>
+      <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
+      <div class="row">
+        <button id="reset-crop" type="button">Reset crop</button>
+        <button id="clear-panel" type="button">Clear panel</button>
+      </div>
+    </section>
+
+    <section aria-label="Caption">
+      <h2>3 · Caption</h2>
+      <label for="caption">Caption</label>
+      <input id="caption" type="text" maxlength="40" value="Sunset Heist">
+      <label for="tagline">Tagline (optional)</label>
+      <input id="tagline" type="text" maxlength="60" value="Vice City · Summer">
+    </section>
+
+    <section aria-label="Export">
+      <h2>4 · Export</h2>
+      <div class="row" id="sizes" role="group" aria-label="Export size"></div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </div>
+
+  <div class="stage">
+    <div class="frame"><canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas></div>
+    <p class="hint">Click a panel to select it, drag to pan its photo, scroll to zoom. The preview is the cover — what you see is what the PNG holds.</p>
+  </div>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
